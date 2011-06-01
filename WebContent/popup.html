@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<link rel="stylesheet" href="chaosnav.css"/>
+	<script type="text/javascript" language="javascript" src="chaosnav.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Chaos Navigator 0.1</title>
+</head>
+
+<body onload="prepareView(this)">
+
+<div id="frame">
+	
+	<div id="content_left">
+	
+		<div id="resource_header">
+			<h1 id="resource_title"  onClick="editTitle()" title="Click to edit title...">My Link Management</h1>
+			<input type="text" id="resource_url" title="Resource" value="http://localhost:9876/chaosnavigator" disabled="disabled">
+			<!-- <resource id="resource"></resource> -->
+		</div><!-- resource_header -->
+	
+		<div id="actions_area">
+			<div id="action">
+				<label onclick="actions()">Act</label><input type="radio" id="act" title="Act" value="Act" onclick="actions()" name="act">
+					<div id="selectedAction">						
+					</div>
+				<label>Archive</label><input type="radio" id="archive" title="archive" value="Archive" name="act" >
+			</div><!-- action -->
+			
+			<div id="actions_dialog" onclick="hideActions()">
+				<label>Read</label><input type="radio" id="read" title="Read" value="Read" onkeypress="read()" name="actions" />
+				<label>Forward</label><input type="radio" id="forward" title="Forward" value="Forward" onkeypress="forward()" name="actions" />
+				<label>Invite</label><input type="radio" id="invite" title="Invite" value="Invite" onkeypress="invite()" name="actions" />
+			</div><!-- actions_dialog -->
+			
+			<div id="urgency">
+				<label>Urgent</label><input type="radio" id="urgent" title="Urgent" value="Urgent" name="urgent" />
+				<label>Important</label><input type="radio" id="important" title="Important" value="Important" name="urgent" />
+				<label>Follow-Up</label><input type="radio" id="follow-up" title="Follow-Up" value="Follow-Up" name="urgent" />
+			</div><!-- urgency -->
+		</div><!-- actions_area -->
+		
+		<div id="context">
+			<label class="textlabel_default">Context</label>
+			<input type="text" id="resource_context" title="Resource"/>
+		</div><!-- context -->
+		
+		<div id="annotation">
+			<label class="textlabel_default">Annotations</label>
+			<textarea id="annotations" title="Annotate"></textarea>
+		</div><!-- annotations -->
+	</div><!-- content.left -->
+	
+	<div id="content_right">
+		<div id="geo_tag_dialog">
+			<input type="text" id="new_geo_tag" title="Add a new GEO tag..." onchange="addGeoTag()"/>
+		</div>
+		<h1 id="tags_title">Tags</h1>
+		<div class="tag">
+			<input type="text" id="geo" />
+			<div class="addtag" id="tag_addgeo" onclick="showAddTagDialog('geo')" title="Add a geo tag"></div> 
+				<label>Geo</label>			
+			<!--  <tag></tag> -->
+		</div><!-- tag -->
+		<div id="topic_tag_dialog">
+			<input type="text" id="new_topic_tag" title="Add a new TOPICAL tag..." onchange="addGeoTag()"/>
+		</div>
+		<div class="tag">
+			<input type="text" id="topic" />
+			<div class="addtag" id="tag_addtopic" onclick="showAddTagDialog('topic')" title="Add a topical tag"></div>
+			<label>Topic</label>			
+			<!--  <tag></tag> -->
+		</div><!-- tag -->
+		<div id="cult_tag_dialog">
+			<input type="text" id="new_cult_tag" title="Add a new CULTURAL tag..." onchange="addGeoTag()"/>
+		</div>
+		<div class="tag">
+			<input type="text" id="culture" />
+			<div class="addtag" id="tag_addcult" onclick="showAddTagDialog('cult')" title="Add a cultural tag"></div>
+			<label>Culture</label>			
+			<!--  <tag></tag> -->
+		</div><!-- tag -->
+		
+		<div id="rating_title">	
+			<p>Rating</p>
+		</div>		
+		<div id="rating_like">
+				<label>Like</label><input type="radio" id="like" title="Like" value="Like" name="like" />
+				<label>Unlike</label><input type="radio" id="unlike" title="Unlike" value="Unlike" name="like" />				
+		</div><!-- rating_like -->
+		<div id="share">
+			<p>Share</p>
+			<a href="http://twitter.com"><img src="images/twitter.png" title="Tweet"/></a>
+			<a href="http://facebook.com"><img src="images/facebook.png" title="Facebook"/></a>
+		</div>
+			
+	</div><!-- content.right -->
+	
+	<div id="save">
+		<a href="#"><img src="images/save-inactive.png" onmousedown="this.src='images/save-pressed.png'" onmouseup="this.src='images/save-inactive.png'" onmouseout="makeSaveInactive(this)" onmouseover="makeSaveActive(this)" onclick="save()"/></a>
+	</div>
+</div> <!-- frame -->
+
+</body>
+</html>
