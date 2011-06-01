@@ -209,13 +209,13 @@ input {
 }
 
 #geo_tag_dialog, #cult_tag_dialog, #topic_tag_dialog {
-	margin: 5px;
+	margin: 15px;
 	padding: 1px;
 	position: absolute;
 	float: left;
 	display: inline;
 	width: 80px;
-	height: 14px;
+	height: 16px;
 	visibility: hidden;
 	background-color: #d6f3f5;
 	border: 1px solid black;		

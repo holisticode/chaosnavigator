@@ -53,25 +53,34 @@
 	</div><!-- content.left -->
 	
 	<div id="content_right">
-		<div id="tag_dialog">
-			<input type="text" id="new_geo_tag" title="Add a new GEO tag..." onchange="addGeoTag()"/>
-		</div>
+		
 		<h1 id="tags_title">Tags</h1>
 		<div class="tag">
+			<div id="geo_tag_dialog">
+				<input type="text" id="new_geo_tag" title="Add a new GEO tag..." onchange="addTag('geo')"/>
+			</div>
 			<input type="text" id="geo" />
-			<div class="addtag" id="tag_addgeo" onclick="showAddGeoTag()" title="Add a geo tag"></div> 
+			<div class="addtag" id="tag_addgeo" onclick="showAddTagDialog('geo')" title="Add a geo tag"></div> 
 				<label>Geo</label>			
 			<!--  <tag></tag> -->
 		</div><!-- tag -->
+		
 		<div class="tag">
+			<div id="topic_tag_dialog">
+				<input type="text" id="new_topic_tag" title="Add a new TOPICAL tag..." onchange="addTag('topic')"/>
+			</div>
 			<input type="text" id="topic" />
-			<div class="addtag" id="tag_addtopic" onclick="addTopicTag()" title="Add a topical tag"></div>
+			<div class="addtag" id="tag_addtopic" onclick="showAddTagDialog('topic')" title="Add a topical tag"></div>
 			<label>Topic</label>			
 			<!--  <tag></tag> -->
 		</div><!-- tag -->
+		
 		<div class="tag">
-			<input type="text" id="culture" />
-			<div class="addtag" id="tag_addcult" onclick="addCultTag()" title="Add a cultural tag"></div>
+			<div id="cult_tag_dialog">
+				<input type="text" id="new_cult_tag" title="Add a new CULTURAL tag..." onchange="addTag('cult')"/>
+			</div>
+			<input type="text" id="cult" />
+			<div class="addtag" id="tag_addcult" onclick="showAddTagDialog('cult')" title="Add a cultural tag"></div>
 			<label>Culture</label>			
 			<!--  <tag></tag> -->
 		</div><!-- tag -->

@@ -6,6 +6,12 @@
 
 var MAX_TITLE_SIZE = 35;
 var req = new XMLHttpRequest();
+var tagnode = "<tag>";
+var ctagnode = "</tag>";
+var typenode = "<type>";
+var ctypenode = "</type>";
+var content = "<content>";
+var ccontent = "</content>";
 
 /**
  * 
@@ -103,6 +109,7 @@ function buildPOSTbodyXML() {
 		like = "false";
 	}
 	var annotations = document.getElementById("annotations").value;
+	
 	body += "<resource><name>" + name + "</name>";
 	body += "<url>" + url + "</url>";
 	body += "<actiontype>" + act + "</actionType>";
@@ -110,10 +117,49 @@ function buildPOSTbodyXML() {
 	body += "<context>" + context + "</context>";
 	body += "<like>" + like + "</like>";
 	body += "<annotation>" + annotations + "</annotation>";
+	
+	var tag_array = buildTagArray();
+	body += buildTagXML(tag_array);
+	
 	body += "</resource>";
 	
 	return body;
 	
+}
+
+function buildTagArray() {
+	
+	var geotagstring = document.getElementById("geo").value;
+	var geotags = geotagstring.split(',');
+	geotags.name = "geo";
+	var topictagstring = document.getElementById("topic").value;
+	var topictags = topictagstring.split(',');
+	topictags.name = "topic";
+	var culttagstring = document.getElementById("cult").value;
+	var culttags = culttagstring.split(',');
+	culttags.name = "cultural";
+	
+	var tag_array = new Array(geotags, topictags, culttags);
+	return tag_array;
+}
+
+function buildTagXML(tags_array) {
+	
+	var tagxml = "<tags>";
+	for (var t=0; t<tags_array.length; t++) {
+		
+		for (var i=0; i<tags_array[t].length; i++) {
+			var newtag = tagnode;
+			newtag += typenode + tags_array[t].name + ctypenode;
+			newtag += content + tags_array[t][i] + ccontent; 
+			newtag += ctagnode;
+			tagxml += newtag;
+		}
+		
+	}
+	
+	tagxml += "</tags>";
+	return tagxml;	
 }
 
 /**
@@ -131,17 +177,19 @@ function getSelectedRadioValue(element_name) {
 	}
 }
 
+
 /**
  * 
- * @param elem
+ * @param tag_type
  */
-function addGeoTag(elem) {
-	var tag = document.getElementById("new_geo_tag").value;
-	var existing = document.getElementById("geo").value;
+function addTag(tag_type) {
+	var input_id = "new_" + tag_type + "_tag"; 
+	var tag = document.getElementById(input_id).value;
+	var existing = document.getElementById(tag_type).value;
 	var new_tag = existing + " " + tag;
-	document.getElementById("geo").value = new_tag;
-	document.getElementById("new_geo_tag").value = "";
-	closeTagDialog();
+	document.getElementById(tag_type).value = new_tag;
+	document.getElementById(input_id).value = "";
+	closeTagDialog(tag_type);
 }
 
 /**
