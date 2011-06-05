@@ -43,9 +43,19 @@ input {
 	float: left;
 }
 
-#resource_title, #tags_title {
+/*"#resource_title, #tags_title { */
+#tags_title {
 	font-weight: bold;
 	font-size: 12px;
+}
+
+#resource_title {
+	size: 240px;
+	width: 240px;
+	font-weight: bold;
+	font-size: 12px;
+	border: none;
+	background: none;
 }
 
 #resource_url {

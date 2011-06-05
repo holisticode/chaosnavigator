@@ -4,7 +4,7 @@
  * @author: tawhuac
  */
 
-var MAX_TITLE_SIZE = 35;
+var MAX_TITLE_SIZE = 39;
 var req = new XMLHttpRequest();
 var tagnode = "<tag>";
 var ctagnode = "</tag>";
@@ -45,8 +45,10 @@ function showResponse() {
 /**
  * 
  */
-function editTitle() {
-	
+function leaveTitleEdit(event, input) {
+	if (event.keyCode == 13) {
+		input.blur();
+	}
 }
 
 /**
@@ -98,9 +100,10 @@ function save() {
  */
 function buildPOSTbodyXML() {
 	var body = new String("<?xml version='1.0' encoding='UTF-8'?>");
-	var name = document.getElementById("resource_title").innerHTML;
+	var name = document.getElementById("resource_title").value;
 	var url  = document.getElementById("resource_url").value;
 	var act  = getSelectedRadioValue("act");
+	var action = getSelectedRadioValue("actions");
 	var urgency = getSelectedRadioValue("urgent");
 	var context = document.getElementById("resource_context").value;
 	var likestr = getSelectedRadioValue("like");
@@ -113,7 +116,8 @@ function buildPOSTbodyXML() {
 	body += "<resource><name>" + name + "</name>";
 	body += "<url>" + url + "</url>";
 	body += "<actiontype>" + act + "</actionType>";
-	body += "<urgency>" + urgency + "</urgency>";
+	body += addNodeIfSet("action", action);
+	body += addNodeIfSet("urgency", urgency);
 	body += "<context>" + context + "</context>";
 	body += "<like>" + like + "</like>";
 	body += "<annotation>" + annotations + "</annotation>";
@@ -127,6 +131,21 @@ function buildPOSTbodyXML() {
 	
 }
 
+/**
+ * 
+ * @param action
+ * @returns {String}
+ */
+function addNodeIfSet(tag, content) {
+	if ( (content != null) && (content != "undefined") ) {
+		return "<" + tag + ">" + content + "</" + tag + ">";
+	} 
+}
+
+/**
+ * 
+ * @returns {Array}
+ */
 function buildTagArray() {
 	
 	var geotagstring = document.getElementById("geo").value;
@@ -210,8 +229,7 @@ function prepareView(elem) {
 	
 	chrome.tabs.getSelected(null, function(tab) {
 		document.getElementById("resource_url").value=tab.url;
-		var title = new String();
-		title = tab.title;
+		var title = tab.title;
 		
 		if (title.length > MAX_TITLE_SIZE) {
 			document.getElementById("resource_title").setAttribute("title",title);
@@ -219,7 +237,7 @@ function prepareView(elem) {
 			
 			title = title + "...";
 		}
-		document.getElementById("resource_title").innerHTML=title;
+		document.getElementById("resource_title").value=title;
 	});
 }
 

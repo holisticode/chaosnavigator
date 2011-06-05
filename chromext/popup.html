@@ -15,7 +15,8 @@
 	<div id="content_left">
 	
 		<div id="resource_header">
-			<h1 id="resource_title"  onClick="editTitle()" title="Click to edit title...">My Link Management</h1>
+			<!-- <h1 id="resource_title"  onClick="editTitle()" title="Click to edit title...">My Link Management</h1> -->
+			<input type="text" id="resource_title" title="Click to edit title..." value="" onclick="this.select()" onkeydown="leaveTitleEdit(event, this)">
 			<input type="text" id="resource_url" title="Resource" value="http://localhost:9876/chaosnavigator" disabled="disabled">
 			<!-- <resource id="resource"></resource> -->
 		</div><!-- resource_header -->
