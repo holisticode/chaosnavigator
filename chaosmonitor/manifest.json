@@ -1,9 +1,9 @@
 {
    "name": "Chaos monitor",
-   "version": "0.1.0",
+   "version": "0.1.1",
    "description": "Visualization of tagged resources",
    "browser_action": {
-      "default_icon": "bookmark-new.png",
+      "default_icon": "tasks.png",
       "popup": "popup.html"
    },
    "permissions": [
