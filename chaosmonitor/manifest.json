@@ -1,0 +1,14 @@
+{
+   "name": "Chaos monitor",
+   "version": "0.1.0",
+   "description": "Visualization of tagged resources",
+   "browser_action": {
+      "default_icon": "bookmark-new.png",
+      "popup": "popup.html"
+   },
+   "permissions": [
+       "tabs",
+       "http://growing-stone-957.heroku.com/",
+       "http://localhost/"
+   ]
+}

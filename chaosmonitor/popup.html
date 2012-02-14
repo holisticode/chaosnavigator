@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="chaosmonitor.css"/>
+	<script type="text/javascript" language="javascript" src="chaosmonitor.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Chaos Monitor 0.1</title>
+</head>
+
+<body onload="prepareView(this)">
+
+<div id="frame">
+	
+	<div id="content_left">
+		<select id="byAction" onchange="getResourcesByAction()"></select>
+		<select id="byUrgency"></select>
+	</div><!-- content.left -->	
+	
+	<div id="content_right">			
+	    <label>Keywords: </label><input id="keywords" name="keywords" type="text" />
+	</div><!-- content.right -->	
+    <br/>	
+    <br/>	
+    <br/>	
+	<div id="tag_results">
+    </div>
+
+	<div id="save">		
+	</div>
+	
+</div> <!-- frame -->
+
+</body>
+</html>
